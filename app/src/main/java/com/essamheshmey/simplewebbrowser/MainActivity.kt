@@ -3,12 +3,14 @@ package com.essamheshmey.simplewebbrowser
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.Global
+import android.util.Patterns
 import android.webkit.URLUtil
 import android.webkit.WebView
 import android.widget.EditText
 import android.widget.ImageButton
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.net.URL
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,18 +27,14 @@ class MainActivity : AppCompatActivity() {
         webview.settings.javaScriptEnabled = true
         webview.canGoBack()
         webview.webViewClient = WebClient(this)
-        search_btn.setOnClickListener {
-            GlobalScope.launch {
-                val URL =url_text.text.toString()
-                if ( URLUtil.isValidUrl(URL)){
-                    webview.loadUrl(URL)}else{URLUtil.isValidUrl(" https://www.google.com/search?q="+URL)}
-            }
-        }
 
-        return_btn.setOnClickListener {
-            GlobalScope.launch {
-                webview.goBack()
-            }
-        }
+        search_btn.setOnClickListener {
+            //GlobalScope.launch {
+            val URL =url_text.text.toString()
+           if (URLUtil.isValidUrl(URL)){ webview.loadUrl(URL)}
+          else{ webview.loadUrl("https://www.google.com/search?q=${URL}")}}
+     //   }
+
+        return_btn.setOnClickListener {webview.goBack()}
     }
 }
