@@ -2,10 +2,13 @@ package com.essamheshmey.simplewebbrowser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.Global
 import android.webkit.URLUtil
 import android.webkit.WebView
 import android.widget.EditText
 import android.widget.ImageButton
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,18 +21,22 @@ class MainActivity : AppCompatActivity() {
         val return_btn:ImageButton=findViewById(R.id.return_btn)
         val search_btn:ImageButton=findViewById(R.id.search_btn)
         val webview:WebView=findViewById(R.id.webview)
-        webview.loadUrl("https://www.google.com")
+        webview.loadUrl("https://github.com/essamhashemy")
         webview.settings.javaScriptEnabled = true
         webview.canGoBack()
         webview.webViewClient = WebClient(this)
         search_btn.setOnClickListener {
-            val URL =url_text.text.toString()
-            if ( URLUtil.isValidUrl(URL)){
-            webview.loadUrl(URL)}else{URLUtil.isValidUrl(" https://www.google.com/search?q="+URL)}
+            GlobalScope.launch {
+                val URL =url_text.text.toString()
+                if ( URLUtil.isValidUrl(URL)){
+                    webview.loadUrl(URL)}else{URLUtil.isValidUrl(" https://www.google.com/search?q="+URL)}
+            }
         }
 
         return_btn.setOnClickListener {
-            webview.goBack()
+            GlobalScope.launch {
+                webview.goBack()
+            }
         }
     }
 }
