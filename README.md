@@ -1,4 +1,5 @@
-# -SimpleWebBrowser
-محوله لعمل متصفح بسيط مع شوية انميشن
- بعد ان انتهيت من كتابة الهيكل الاساس للتطبيق ساضيف له مكتبة الكورتينز لوجود بعض البطاء في اثناء التشغل ومن الممكن ان اضيف اليه يعض الانميشين في المستقبل 
-وبس كد
+# SimpleWebBrowser
+Converted to create a simple browser with some animation
+
+After I finish writing the basic structure of the application, I will add the Cortense library to it due to some slowness during operation, and it is possible that I will add some animations to it in the future.
+Just like that
